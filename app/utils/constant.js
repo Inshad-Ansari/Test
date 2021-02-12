@@ -13,7 +13,13 @@ import sidebar from '../assets/images/sidebar.png'
 import left_arrow from '../assets/images/left-arrow.png'
 import logout_arrow from '../assets/images/10.png'
 
+import settings_a from '../assets/images/settings_a.png'
+import settings_in from '../assets/images/settings_in.png'
+
+
 const localImages = {
+  settings_a,
+  settings_in,
   home_a,
   home_in,
   myorder_a,

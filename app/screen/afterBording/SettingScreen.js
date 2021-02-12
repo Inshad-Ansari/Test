@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Text, View, SafeAreaView, StatusBar, ScrollView, Platform, Dimensions } from 'react-native'
 
-import { HeaderWithBack, ButtonWithoutShadow } from '../../component/Button'
+import { HeaderHomePage, ButtonWithoutShadow } from '../../component/Button'
 import { CustomStyles } from '../style/CustomStyles'
 import { colors, fonts } from '../../utils/constant'
 import SharedClass from '../../utils/SharedClass'
@@ -66,18 +66,18 @@ const SettingScreen = (props) => {
             <SafeAreaView style={CustomStyles.mainContainer}>
 
                 <StatusBar barStyle="dark-content" backgroundColor={colors.statusBarColor} />
-                <HeaderWithBack
-                    backgroundColor={1}
-                    onActionRight={() => { }}
+                <HeaderHomePage
+                    onActionRight={(item) => {
+                    }}
                     onActionMiddle={() => { }}
-                    onActionLeft={() => { props.navigation.goBack() }}
+                    onActionLeft={() => { props.navigation.openDrawer() }}
                     label="Settings"
+                    backgroundColor={1}
                     labelStyle={{
                         color: colors.headingColor,
                         fontFamily: fonts.bold,
                         fontSize: 22
                     }}
-                // rightIcon="search"
                 />
 
                 <ScrollView

@@ -1,5 +1,5 @@
 import React from 'react'
-import { ScrollView,Linking, TouchableOpacity, View, Text, Dimensions, Image, Alert, Share, SafeAreaView } from 'react-native'
+import { ScrollView, Linking, TouchableOpacity, View, Text, Dimensions, Image, Alert, Share, SafeAreaView } from 'react-native'
 
 
 import axios from '../../api'
@@ -10,6 +10,7 @@ import { SideButton } from '../../component/Button';
 import { DrawerStyles } from '../style/DrawerStyles';
 import { actions } from "../../redux/reducer"
 import { connect } from 'react-redux';
+import { StackActions, CommonActions } from '@react-navigation/native';
 const { height, width } = Dimensions.get('window');
 
 
@@ -18,7 +19,14 @@ const DrawerScreen = (props) => {
 
     const { isGaust, user, navigation } = props
     const goToPage = (page) => {
-        navigation.navigate(page)
+        // navigation.navigate(page)
+        props.navigation.dispatch(StackActions.replace('DrawerStack', {
+           screen: 'TabStack', 
+                params: {
+                         screen: page,
+                         
+                }
+        }));
     }
 
     const logout = () => {
@@ -46,39 +54,58 @@ const DrawerScreen = (props) => {
 
     return <>
         <SafeAreaView>
-        
-            <View style={{ ...DrawerStyles.mainContainer, alignItems: 'center', height:height }}>
-            <ScrollView style={{height:height, flex:1}}>
-              
-                <View style={{ ...DrawerStyles.navContainer,marginBottom:300 }}>
-               
-                   
-                   <SideButton
-                        title="Settings"
-                        onAction={() => {
-                            props.navigation.closeDrawer()
-                            goToPage('SettingScreen')}}
-                        image={localImages.image_0}
-                    />
-                  
-                    {
-                        props.loginUserType == "guest"
-                            ? <SideButton
-                                title="Login"
-                                onAction={() => logout()}
-                                image={localImages.logout_arrow}
-                            />
-                            : <SideButton
-                                title="Logout"
-                                onAction={() => logout()}
-                                image={localImages.logout_arrow}
-                            />
-                    }
 
-                </View>
+            <View style={{ ...DrawerStyles.mainContainer, alignItems: 'center', height: height }}>
+                <ScrollView style={{ height: height, flex: 1 }}>
+
+                    <View style={{ ...DrawerStyles.navContainer, marginBottom: 300 }}>
+
+
+                        <SideButton
+                            title="Home"
+                            onAction={() => {
+                                props.navigation.closeDrawer()
+                                goToPage('HomeScreen')
+                            }}
+                            image={localImages.image_0}
+                        />
+
+                        <SideButton
+                            title="Profile"
+                            onAction={() => {
+                                props.navigation.closeDrawer()
+                                goToPage('ProfileScreen')
+                            }}
+                            image={localImages.image_0}
+                        />
+
+                        <SideButton
+                            title="Settings"
+                            onAction={() => {
+                                props.navigation.closeDrawer()
+                                goToPage('SettingScreen')
+                            }}
+                            image={localImages.image_0}
+                        />
+
+                        {
+                            props.loginUserType == "guest"
+                                ? <SideButton
+                                    title="Login"
+                                    onAction={() => logout()}
+                                    image={localImages.logout_arrow}
+                                />
+                                : <SideButton
+                                    title="Logout"
+                                    onAction={() => logout()}
+                                    image={localImages.logout_arrow}
+                                />
+                        }
+
+                    </View>
                 </ScrollView>
             </View>
-           
+
         </SafeAreaView>
     </>
 }

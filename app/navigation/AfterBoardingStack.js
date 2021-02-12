@@ -23,6 +23,8 @@ const TabStack = () => <>
 
                     case 'ProfileScreen':
                         return <Image source={focused ? localImages.myorder_a : localImages.myorder_in} style={{ width: 30, height: 30 }} />
+                    case 'SettingScreen':
+                        return <Image source={focused ? localImages.settings_a : localImages.settings_in} style={{ width: 30, height: 30 }} />
                 }
 
 
@@ -35,6 +37,7 @@ const TabStack = () => <>
     >
         <Tab.Screen name="HomeScreen" component={HomeScreen} />
         <Tab.Screen name="ProfileScreen" component={ProfileScreen} />
+        <Tab.Screen name="SettingScreen" component={SettingScreen} />
 
     </Tab.Navigator>
 </>
@@ -61,8 +64,8 @@ const AfterBoardingStack = () => <>
             name="DrawerStack"
             component={DrawerStack}
         />
-        <Stack.Screen name="SettingScreen" component={SettingScreen} />
-  
+        {/* <Stack.Screen name="SettingScreen" component={SettingScreen} /> */}
+
     </Stack.Navigator>
 </>
 
